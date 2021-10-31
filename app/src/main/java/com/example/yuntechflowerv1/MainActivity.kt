@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
         ) //標題文字自適應
         buildUI()
+
     }
 
     private fun buildUI() {
