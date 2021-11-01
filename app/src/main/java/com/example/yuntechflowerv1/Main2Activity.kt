@@ -128,7 +128,7 @@ class Main2Activity : AppCompatActivity() {
         private val flowerModel = NewModel.newInstance(ctx)
 
         override fun analyze(imageProxy: ImageProxy) {
-            var temp : String =""
+            var temp =""
             val items = mutableListOf<Recognition>()
 
             val tfImage = TensorImage.fromBitmap(toBitmap(imageProxy))

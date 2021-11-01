@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         private const val PERMISSIONS_REQUEST_CAMERA = 2
     }
 
-    //拍照需要的两个权限
+    //拍照需要的两个權限
     private val permissionList =
         arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
 
-    //存储用户拒绝授权的权限
+    //存拒絕的權限
     private var permissionTemp: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             if (permissionTemp.isEmpty()) {
-                //未授予的权限为空，表示都授予了，开启照相功能
+                //沒有未授權的權限
                 goCamera()
-            } else {//请求权限方法
+            } else {
                 val permissions = permissionTemp.toTypedArray()//将List转为数组
                 ActivityCompat.requestPermissions(
                     this,
@@ -62,7 +62,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         Btn_Photo.setOnClickListener {
-            //检查版本是否大于M
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(
                         this,
@@ -75,7 +74,6 @@ class MainActivity : AppCompatActivity() {
                         PERMISSIONS_REQUEST_ALBUM
                     )
                 } else {
-                    //权限已经被授权，开启相册
                     goAlbum()
                 }
             }

@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="雲科花朵辨識專題"
+            android:text="@string/title"
             android:gravity="center"
             android:autoSizeTextType="uniform"
             android:textStyle="bold">
@@ -46,7 +46,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="0.5"
             android:orientation="vertical">
 
             <ImageButton
@@ -64,7 +64,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="0.5"
             android:orientation="vertical">
 
             <ImageButton
