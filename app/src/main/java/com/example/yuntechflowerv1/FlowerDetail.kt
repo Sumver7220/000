@@ -15,16 +15,16 @@ class FlowerDetail : AppCompatActivity() {
         setContentView(R.layout.flowerdetail)
         val item = intent.getIntExtra("index",0)
         val flower = FlowerData.allFlower[item]
-        textViewNameCn.text = flower.nameCh
-        textViewNameEn.text = flower.nameEn
-        if (flower.language.isNotEmpty()) {
-            textViewLang.text = "花語: $flower.language"
+        textViewNameCn.text = FlowerData.allFlower[item].nameCh
+        textViewNameEn.text = FlowerData.allFlower[item].nameEn
+        if (FlowerData.allFlower[item].language.isNotEmpty()) {
+            textViewLang.text = "花語: "+FlowerData.allFlower[item].language
         }
         else {
             textViewLang.visibility = View.GONE
         }
-        textViewGenusFamily.text = "$flower.genusCh $flower.familyCh"
+        textViewGenusFamily.text = FlowerData.allFlower[item].genusCh+FlowerData.allFlower[item].familyCh
         textViewDesc.text = flower.description
-        imageView.setImageDrawable(Utils.getDrawable(this, "flower${flower.index}_0"))
+        imageView.setImageDrawable(Utils.getDrawable(this, "flower${FlowerData.allFlower[item].index}_0"))
     }
 }
