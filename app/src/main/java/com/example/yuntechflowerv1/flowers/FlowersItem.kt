@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 data class FlowersItem(
     @IgnoredOnParcel
     @SerializedName("Index")
-    val index:Long,
+    val index: Long,
 
     @SerializedName("Name_En")
     val nameEn: String,
@@ -34,6 +34,6 @@ data class FlowersItem(
 
     @SerializedName("Family_Ch")
     val familyCh: String = ""
-):Parcelable{
+) : Parcelable {
 
 }

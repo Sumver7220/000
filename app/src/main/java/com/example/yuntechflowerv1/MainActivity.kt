@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buildUI() {
-        Btn_Camera.setOnClickListener {
+        btn_Camera.setOnClickListener {
             permissionTemp.clear()
             for (i in permissionList.indices) {
                 if (ContextCompat.checkSelfPermission(
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        Btn_Photo.setOnClickListener {
+        btn_Photo.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (ContextCompat.checkSelfPermission(
                         this,
@@ -77,7 +77,9 @@ class MainActivity : AppCompatActivity() {
                     goAlbum()
                 }
             }
-
+        }
+        btn_Library.setOnClickListener {
+            Toast.makeText(this,"親~功能尚未開放，敬請期待",Toast.LENGTH_SHORT).show()
         }
     }
 

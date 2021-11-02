@@ -8,15 +8,15 @@ class RecogViewModel : ViewModel() {
     private val _recognitionList = MutableLiveData<List<Recognition>>()
     val recognitionList: LiveData<List<Recognition>> = _recognitionList
 
-    fun updateData(recognitions: List<Recognition>){
+    fun updateData(recognitions: List<Recognition>) {
         _recognitionList.postValue(recognitions)
     }
 }
 
-data class Recognition(val label:String, val confidence:Float) {
+data class Recognition(val label: String, val confidence: Float) {
 
     // For easy logging
-    override fun toString():String{
+    override fun toString(): String {
         return "$label / $probabilityString"
     }
 

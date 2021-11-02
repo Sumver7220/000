@@ -1,30 +1,54 @@
 package com.example.yuntechflowerv1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
-import com.example.yuntechflowerv1.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.yuntechflowerv1.flowers.FlowerData
-import com.example.yuntechflowerv1.flowers.FlowersItem
 import com.example.yuntechflowerv1.util.Utils
+import kotlinx.android.synthetic.main.activity_main3.*
 import kotlinx.android.synthetic.main.flowerdetail.*
+import kotlinx.android.synthetic.main.flowerdetail.toolbar
 
 class FlowerDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        title=""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.flowerdetail)
-        val item = intent.getIntExtra("index",0)
+        val item = intent.getIntExtra("index", 0)
         val flower = FlowerData.allFlower[item]
-        textViewNameCn.text = FlowerData.allFlower[item].nameCh
+        textViewNameSci.text = FlowerData.allFlower[item].nameSci
         textViewNameEn.text = FlowerData.allFlower[item].nameEn
         if (FlowerData.allFlower[item].language.isNotEmpty()) {
-            textViewLang.text = "花語: "+FlowerData.allFlower[item].language
+            textViewLang.text = FlowerData.allFlower[item].language
+        } else {
+            textViewLang.text = "無"
         }
-        else {
-            textViewLang.visibility = View.GONE
-        }
-        textViewGenusFamily.text = FlowerData.allFlower[item].genusCh+FlowerData.allFlower[item].familyCh
+        textViewGenusFamily.text =
+            FlowerData.allFlower[item].genusCh + FlowerData.allFlower[item].familyCh
         textViewDesc.text = flower.description
-        imageView.setImageDrawable(Utils.getDrawable(this, "flower${FlowerData.allFlower[item].index}_0"))
+        textViewMed.text=flower.med
+        imageView.setImageDrawable(
+            Utils.getDrawable(
+                this,
+                "flower${FlowerData.allFlower[item].index}_0"
+            )
+        )
+        flowerName.text=FlowerData.allFlower[item].nameCh
+        buildToolbar()
+    }
+    private fun buildToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#D9F2DC"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -17,67 +17,84 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.8"
-            android:src="@drawable/yuntech_logo"
-            android:scaleType="center">
-        </ImageView>
+            android:layout_weight="0.7"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/yuntech"/>
 
         <TextView
             android:id="@+id/Text_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/title"
-            android:gravity="center"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0.3"
             android:autoSizeTextType="uniform"
-            android:textStyle="bold">
-        </TextView>
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="#335145"
+            android:textStyle="bold"
+            android:typeface="sans"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/Btn_Camera"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:scaleType="center"
-                android:background="@drawable/camera">
-            </ImageButton>
+        <Button
+            android:id="@+id/btn_Camera"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/button_homepage"
+            android:drawableLeft="@drawable/camera_white_64px"
+            android:drawablePadding="6dp"
+            android:paddingLeft="20dp"
+            android:text="@string/btn_Camera_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_Photo"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/button_homepage"
+            android:drawableLeft="@drawable/picture_white_64px"
+            android:drawablePadding="6dp"
+            android:paddingLeft="20dp"
+            android:text="@string/btn_photo_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:orientation="vertical">
+        <Button
+            android:id="@+id/btn_Library"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:background="@drawable/button_homepage"
+            android:drawableLeft="@drawable/illustration_white_64px"
+            android:drawablePadding="6dp"
+            android:paddingLeft="20dp"
+            android:text="@string/btn_Illus_text"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
 
-            <ImageButton
-                android:id="@+id/Btn_Photo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="80dp"
-                android:scaleType="center"
-                android:background="@drawable/photo">
-            </ImageButton>
-
-        </LinearLayout>
 
     </LinearLayout>
 

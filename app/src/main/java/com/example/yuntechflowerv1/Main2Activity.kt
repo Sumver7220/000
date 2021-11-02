@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Matrix
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -23,6 +24,7 @@ import com.example.yuntechflowerv1.ui.RecognitionAdapter
 import com.example.yuntechflowerv1.util.YuvToRgbConv
 import com.example.yuntechflowerv1.viewModel.RecogViewModel
 import com.example.yuntechflowerv1.viewModel.Recognition
+import kotlinx.android.synthetic.main.activity_main3.*
 import org.tensorflow.lite.support.image.TensorImage
 import java.util.concurrent.Executors
 
@@ -49,6 +51,7 @@ class Main2Activity : AppCompatActivity() {
     private val recogViewModel: RecogViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        title=""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
@@ -64,10 +67,25 @@ class Main2Activity : AppCompatActivity() {
 
         resultRecyclerView.itemAnimator = null //關閉動畫減少延遲
 
-        recogViewModel.recognitionList.observe(this, Observer { viewAdapter.submitList(it) })
+        recogViewModel.recognitionList.observe(this, { viewAdapter.submitList(it) })
+
+        buildToolbar()
 
     }
-
+    private fun buildToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     private fun allPermissionsGranted(): Boolean = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             baseContext, it
@@ -93,7 +111,7 @@ class Main2Activity : AppCompatActivity() {
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
             preview = Preview.Builder().build()
@@ -128,7 +146,7 @@ class Main2Activity : AppCompatActivity() {
         private val flowerModel = NewModel.newInstance(ctx)
 
         override fun analyze(imageProxy: ImageProxy) {
-            var temp =""
+            var temp = ""
             val items = mutableListOf<Recognition>()
 
             val tfImage = TensorImage.fromBitmap(toBitmap(imageProxy))
@@ -138,12 +156,12 @@ class Main2Activity : AppCompatActivity() {
                 }.take(MAX_RESULT_DISPLAY)
 
             for (output in outputs) {
-                when(output.label){
-                    "daisy"-> temp="雛菊"
-                    "dandelion"->temp="蒲公英"
-                    "sunflowers"->temp="向日葵"
-                    "roses"->temp="玫瑰"
-                    "tulips"->temp="鬱金香"
+                when (output.label) {
+                    "daisy" -> temp = "雛菊"
+                    "dandelion" -> temp = "蒲公英"
+                    "sunflowers" -> temp = "向日葵"
+                    "roses" -> temp = "玫瑰"
+                    "tulips" -> temp = "鬱金香"
                 }
                 items.add(Recognition(temp, output.score))
             }

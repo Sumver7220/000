@@ -1,5 +1,18 @@
 <resources>
-    <string name="app_name">YunTechFlowerV1</string>
-    <string name="title">雲科花朵辨識專題</string>
+    <string name="app_name">雲科花朵辨識專題V1</string>
+    <string name="title">雲科花朵辨識專題<br />YunFlower</string>
     <string name="Result">這可能是:%1$s 機率%2$f</string>
+    <string name="btn_photo_text">開啟相簿</string>
+    <string name="btn_Camera_text">實時辨識</string>
+    <string name="btn_Illus_text">花朵圖鑑</string>
+    <string name="toolBar_Camera">實時辨識</string>
+    <string name="toolBar_Result">辨識結果</string>
+    <string name="text_result">這可能是：</string>
+    <string name="text_enName">英文名：</string>
+    <string name="text_Lang">花語：</string>
+    <string name="text_Desc">外觀：</string>
+    <string name="btn_Detail">花朵詳細</string>
+    <string name="text_SciName">學名：</string>
+    <string name="text_genusFamily">分類：</string>
+    <string name="text_Med">入藥：</string>
 </resources>

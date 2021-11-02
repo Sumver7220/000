@@ -6,7 +6,9 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.yuntechflowerv1.flowers.FlowerData
 import com.example.yuntechflowerv1.ml.NewModel
 import kotlinx.android.synthetic.main.activity_main3.*
 import org.tensorflow.lite.support.image.TensorImage
@@ -14,8 +16,8 @@ import org.tensorflow.lite.support.image.TensorImage
 private const val MAX_RESULT_DISPLAY = 3 //顯示辨認結果數量
 
 class Main3Activity : AppCompatActivity() {
-    var finalFlower :String=""
-    var index:Int = 0
+    var finalFlower: String = ""
+    var index: Int = 0
 
     companion object {
         private const val ACTIVITY_REQUEST_ALBUM = 3
@@ -24,25 +26,41 @@ class Main3Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
+        title = ""
         choosePhoto()
         btn_Album.setOnClickListener {
             choosePhoto()
         }
         btn_More.setOnClickListener {
             flowerIndex()
-            var intent=Intent(this,FlowerDetail::class.java)
-            intent.putExtra("index",index)
+            val intent = Intent(this, FlowerDetail::class.java)
+            intent.putExtra("index", index)
             startActivity(intent)
         }
+        buildToolbar()
     }
 
+    private fun buildToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
     private fun flowerIndex() {
-        index = when(finalFlower){
-            "daisy"->0
-            "roses"->1
-            "sunflowers"->2
-            "dandelion"->3
-            "tulips"->4
+        index = when (finalFlower) {
+            "daisy" -> 0
+            "roses" -> 1
+            "sunflowers" -> 2
+            "dandelion" -> 3
+            "tulips" -> 4
             else -> {
                 0
             }
@@ -72,7 +90,7 @@ class Main3Activity : AppCompatActivity() {
 
     private fun imageAnalyzer(bitmap: Bitmap, ctx: Context) {
         val flowerModel = NewModel.newInstance(ctx)
-        val temp = arrayOfNulls<String>(5)
+        val tempn = arrayOfNulls<String>(5)
         val tfImage = TensorImage.fromBitmap(bitmap)
         val outputs = flowerModel.process(tfImage)
             .probabilityAsCategoryList.apply {
@@ -80,19 +98,34 @@ class Main3Activity : AppCompatActivity() {
             }.take(MAX_RESULT_DISPLAY)
         for ((i, output) in outputs.withIndex()) {
             when (output.label) {
-                "daisy" -> temp[i] = "雛菊"
-                "dandelion" -> temp[i] = "蒲公英"
-                "sunflowers" -> temp[i] = "向日葵"
-                "roses" -> temp[i] = "玫瑰"
-                "tulips" -> temp[i] = "鬱金香"
+                "daisy" -> tempn[i] = "雛菊"
+                "dandelion" -> tempn[i] = "蒲公英"
+                "sunflowers" -> tempn[i] = "向日葵"
+                "roses" -> tempn[i] = "玫瑰"
+                "tulips" -> tempn[i] = "鬱金香"
             }
         }
-        val result1=getString(R.string.Result,temp[0],outputs[0].score)
-        val result2=getString(R.string.Result,temp[1],outputs[1].score)
-        val result3=getString(R.string.Result,temp[2],outputs[2].score)
-        val text = "$result1\n$result2\n$result3"
-        resultText.text= text
-        finalFlower=outputs[0].label.toString()
+        /*val result1 = getString(R.string.Result, tempn[0], outputs[0].score)
+        val result2 = getString(R.string.Result, tempn[1], outputs[1].score)
+        val result3 = getString(R.string.Result, tempn[2], outputs[2].score)
+        val text = "$result1\n$result2\n$result3"*/
+        val sss = (outputs[0].score*100).toInt()
+        resultText.text = tempn[0]+"(${sss}%)"
+        finalFlower = outputs[0].label.toString()
+        flowerIndex()
+        showDetail(index)
+    }
+    private fun showDetail(index:Int){
+        scroll.scrollTo(0,0)
+        var lang="無"
+        val enName=FlowerData.allFlower[index].nameEn
+        if (FlowerData.allFlower[index].language.isNotEmpty()){
+            lang=FlowerData.allFlower[index].language
+        }
+        val desCri=FlowerData.allFlower[index].description
+        enNameText.text=enName
+        lanGueText.text=lang
+        describeText.text=desCri
     }
 }
 
