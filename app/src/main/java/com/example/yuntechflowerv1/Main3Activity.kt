@@ -4,20 +4,25 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.TextViewCompat
 import com.example.yuntechflowerv1.flowers.FlowerData
 import com.example.yuntechflowerv1.ml.NewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main3.*
 import org.tensorflow.lite.support.image.TensorImage
+import kotlin.system.exitProcess
 
 private const val MAX_RESULT_DISPLAY = 3 //顯示辨認結果數量
 
 class Main3Activity : AppCompatActivity() {
     var finalFlower: String = ""
     var index: Int = 0
+    private var status =0
 
     companion object {
         private const val ACTIVITY_REQUEST_ALBUM = 3
@@ -55,7 +60,7 @@ class Main3Activity : AppCompatActivity() {
         }
     }
     private fun flowerIndex() {
-        index = when (finalFlower) {
+        /*index = when (finalFlower) {
             "daisy" -> 0
             "roses" -> 1
             "sunflowers" -> 2
@@ -63,6 +68,15 @@ class Main3Activity : AppCompatActivity() {
             "tulips" -> 4
             else -> {
                 0
+            }
+        }*/
+        for (i in 0 until FlowerData.allFlower.size) {
+            index = when (finalFlower) {
+                FlowerData.allFlower[i].nameCh -> FlowerData.allFlower[i].index.toInt()
+                else -> 0
+            }
+            if (index != 0){
+                break
             }
         }
     }
@@ -79,6 +93,9 @@ class Main3Activity : AppCompatActivity() {
             val resolver = this.contentResolver
             val bitmap = MediaStore.Images.Media.getBitmap(resolver, data?.data)
             displayImage(bitmap)
+        }else if(status==0){
+            val intent =Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
@@ -103,6 +120,10 @@ class Main3Activity : AppCompatActivity() {
                 "sunflowers" -> tempn[i] = "向日葵"
                 "roses" -> tempn[i] = "玫瑰"
                 "tulips" -> tempn[i] = "鬱金香"
+                "Calliandra" -> tempn[i] = "朱纓花"
+                "Lantana" -> tempn[i] = "馬纓丹"
+                "Hibiscus" -> tempn[i] = "扶桑"
+                "Osmanthus" -> tempn[i] = "桂花"
             }
         }
         /*val result1 = getString(R.string.Result, tempn[0], outputs[0].score)
@@ -111,9 +132,10 @@ class Main3Activity : AppCompatActivity() {
         val text = "$result1\n$result2\n$result3"*/
         val sss = (outputs[0].score*100).toInt()
         resultText.text = tempn[0]+"(${sss}%)"
-        finalFlower = outputs[0].label.toString()
+        finalFlower = tempn[0].toString()
         flowerIndex()
         showDetail(index)
+        status++
     }
     private fun showDetail(index:Int){
         scroll.scrollTo(0,0)

@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YunTechFlowerV1">
         <activity
+            android:name=".SearchListActivity"
+            android:exported="false" />
+        <activity
             android:name=".FlowerDetail"
             android:exported="false" />
         <activity

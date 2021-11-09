@@ -15,4 +15,5 @@
     <string name="text_SciName">學名：</string>
     <string name="text_genusFamily">分類：</string>
     <string name="text_Med">入藥：</string>
+    <string name="toolBar_Library">花朵圖鑑</string>
 </resources>

@@ -13,6 +13,7 @@
         android:minHeight="?attr/actionBarSize">
 
         <TextView
+            android:id="@+id/DEBUG"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

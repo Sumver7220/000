@@ -6,7 +6,7 @@ import kotlinx.android.parcel.IgnoredOnParcel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class FlowersItem(
+data class FlowerItem(
     @IgnoredOnParcel
     @SerializedName("Index")
     val index: Long,
@@ -33,7 +33,8 @@ data class FlowersItem(
     val genusCh: String,
 
     @SerializedName("Family_Ch")
-    val familyCh: String = ""
-) : Parcelable {
+    val familyCh: String = "",
 
-}
+    @SerializedName("Image")
+    val image: Int
+) : Parcelable{}

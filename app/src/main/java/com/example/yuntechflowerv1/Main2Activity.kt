@@ -17,18 +17,20 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuntechflowerv1.ml.NewModel
 import com.example.yuntechflowerv1.ui.RecognitionAdapter
 import com.example.yuntechflowerv1.util.YuvToRgbConv
 import com.example.yuntechflowerv1.viewModel.RecogViewModel
 import com.example.yuntechflowerv1.viewModel.Recognition
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.activity_main3.*
+import kotlinx.android.synthetic.main.activity_main3.toolbar
 import org.tensorflow.lite.support.image.TensorImage
 import java.util.concurrent.Executors
 
-private const val MAX_RESULT_DISPLAY = 3 //顯示辨認結果數量
+private var MAX_RESULT_DISPLAY = 1 //顯示辨認結果數量
+private var DEBUG_MODE=0
 private const val TAG = "110專題歐俊毅好C"
 private const val REQUEST_CODE_PERMISSIONS = 999 //權限返回碼
 private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA) //相機權限
@@ -70,6 +72,12 @@ class Main2Activity : AppCompatActivity() {
         recogViewModel.recognitionList.observe(this, { viewAdapter.submitList(it) })
 
         buildToolbar()
+
+        DEBUG.setOnClickListener {
+            DEBUG_MODE++
+            if (DEBUG_MODE>=3)
+                MAX_RESULT_DISPLAY=3
+        }
 
     }
     private fun buildToolbar() {
@@ -156,12 +164,17 @@ class Main2Activity : AppCompatActivity() {
                 }.take(MAX_RESULT_DISPLAY)
 
             for (output in outputs) {
-                when (output.label) {
-                    "daisy" -> temp = "雛菊"
-                    "dandelion" -> temp = "蒲公英"
-                    "sunflowers" -> temp = "向日葵"
-                    "roses" -> temp = "玫瑰"
-                    "tulips" -> temp = "鬱金香"
+                temp = when (output.label) {
+                    "daisy" -> "雛菊"
+                    "dandelion" -> "蒲公英"
+                    "sunflowers" -> "向日葵"
+                    "roses" -> "玫瑰"
+                    "tulips" -> "鬱金香"
+                    "Lantana"->"馬櫻丹"
+                    "Hibiscus"->"扶桑"
+                    "Calliandra"->"朱櫻花"
+                    "Osmanthus"->"桂花"
+                    else-> output.label.toString()
                 }
                 items.add(Recognition(temp, output.score))
             }
