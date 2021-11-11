@@ -60,15 +60,17 @@
                     android:text="@string/text_enName"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView"/>
+                    app:layout_constraintTop_toBottomOf="@id/imageView" />
 
                 <TextView
                     android:id="@+id/textViewNameEn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
                     android:text="TextView"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/text_NameEn"
                     app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -76,21 +78,23 @@
                     android:id="@+id/text_NameSci"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/text_SciName"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_NameEn"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
 
                 <TextView
                     android:id="@+id/textViewNameSci"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingRight="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingEnd="16dp"
                     android:text="TextView"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/text_NameSci"
                     app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
 
@@ -98,21 +102,23 @@
                     android:id="@+id/text_GenusFamily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/text_genusFamily"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_NameSci"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
 
                 <TextView
                     android:id="@+id/textViewGenusFamily"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingRight="16dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingEnd="16dp"
                     android:text="TextView"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_GenusFamily"
                     app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
 
@@ -125,7 +131,7 @@
                     android:text="@string/text_Lang"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/text_GenusFamily"/>
+                    app:layout_constraintTop_toBottomOf="@id/textViewGenusFamily" />
 
                 <TextView
                     android:id="@+id/textViewLang"
@@ -135,20 +141,20 @@
                     android:layout_marginEnd="20dp"
                     android:text="TextView"
                     android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_Lang"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewGenusFamily"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGenusFamily" />
 
                 <TextView
                     android:id="@+id/text_Desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/text_Desc"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewLang"/>
+                    app:layout_constraintTop_toBottomOf="@id/textViewLang" />
 
                 <TextView
                     android:id="@+id/textViewDesc"
@@ -158,21 +164,21 @@
                     android:layout_marginEnd="20dp"
                     android:text="TextView"
                     android:textSize="20sp"
-                    app:layout_constraintStart_toEndOf="@+id/text_Desc"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_Desc"
                     app:layout_constraintTop_toBottomOf="@+id/textViewLang" />
 
                 <TextView
                     android:id="@+id/text_Med"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/text_Med"
                     android:textSize="20sp"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDesc"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewMed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textViewMed" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
 
                 <TextView
                     android:id="@+id/textViewMed"
@@ -184,8 +190,8 @@
                     android:text="TextView"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_Med"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_Med"
                     app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

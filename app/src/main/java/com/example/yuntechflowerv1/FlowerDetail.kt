@@ -2,9 +2,9 @@ package com.example.yuntechflowerv1
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yuntechflowerv1.flowers.FlowerData
+import com.example.yuntechflowerv1.flowers.FlowerItem
 import com.example.yuntechflowerv1.util.Utils
 import kotlinx.android.synthetic.main.activity_main3.*
 import kotlinx.android.synthetic.main.flowerdetail.*
@@ -15,28 +15,34 @@ class FlowerDetail : AppCompatActivity() {
         title=""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.flowerdetail)
-        val item = intent.getIntExtra("index", 0)
-        val flower = FlowerData.allFlower[item]
-        textViewNameSci.text = FlowerData.allFlower[item].nameSci
-        textViewNameEn.text = FlowerData.allFlower[item].nameEn
-        if (FlowerData.allFlower[item].language.isNotEmpty()) {
-            textViewLang.text = FlowerData.allFlower[item].language
+        val flower= intent.getParcelableExtra<FlowerItem>("item")
+        buildToolbar()
+        if (flower != null) {
+            createText(flower)
+        }
+    }
+
+    private fun createText(flower: FlowerItem) {
+        textViewNameSci.text = flower.nameSci
+        textViewNameEn.text =flower.nameEn
+        if (flower.language.isNotEmpty()) {
+            textViewLang.text = flower.language
         } else {
             textViewLang.text = "無"
         }
         textViewGenusFamily.text =
-            FlowerData.allFlower[item].genusCh + FlowerData.allFlower[item].familyCh
+            flower.genusCh + flower.familyCh
         textViewDesc.text = flower.description
         textViewMed.text=flower.med
         imageView.setImageDrawable(
             Utils.getDrawable(
                 this,
-                "flower${FlowerData.allFlower[item].index}_0"
+                "flower${flower.index}_0"
             )
         )
-        flowerName.text=FlowerData.allFlower[item].nameCh
-        buildToolbar()
+        flowerName.text=flower.nameCh
     }
+
     private fun buildToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

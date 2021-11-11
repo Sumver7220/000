@@ -11,10 +11,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.TextViewCompat
 import com.example.yuntechflowerv1.flowers.FlowerData
+import com.example.yuntechflowerv1.flowers.FlowerItem
 import com.example.yuntechflowerv1.ml.NewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main3.*
 import org.tensorflow.lite.support.image.TensorImage
+import java.util.*
 import kotlin.system.exitProcess
 
 private const val MAX_RESULT_DISPLAY = 3 //顯示辨認結果數量
@@ -39,7 +41,7 @@ class Main3Activity : AppCompatActivity() {
         btn_More.setOnClickListener {
             flowerIndex()
             val intent = Intent(this, FlowerDetail::class.java)
-            intent.putExtra("index", index)
+            intent.putExtra("item", FlowerData.allFlower[index])
             startActivity(intent)
         }
         buildToolbar()
@@ -60,16 +62,6 @@ class Main3Activity : AppCompatActivity() {
         }
     }
     private fun flowerIndex() {
-        /*index = when (finalFlower) {
-            "daisy" -> 0
-            "roses" -> 1
-            "sunflowers" -> 2
-            "dandelion" -> 3
-            "tulips" -> 4
-            else -> {
-                0
-            }
-        }*/
         for (i in 0 until FlowerData.allFlower.size) {
             index = when (finalFlower) {
                 FlowerData.allFlower[i].nameCh -> FlowerData.allFlower[i].index.toInt()
@@ -95,6 +87,7 @@ class Main3Activity : AppCompatActivity() {
             displayImage(bitmap)
         }else if(status==0){
             val intent =Intent(this,MainActivity::class.java)
+            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         }
         super.onActivityResult(requestCode, resultCode, data)
@@ -114,22 +107,16 @@ class Main3Activity : AppCompatActivity() {
                 sortByDescending { it.score }
             }.take(MAX_RESULT_DISPLAY)
         for ((i, output) in outputs.withIndex()) {
-            when (output.label) {
-                "daisy" -> tempn[i] = "雛菊"
-                "dandelion" -> tempn[i] = "蒲公英"
-                "sunflowers" -> tempn[i] = "向日葵"
-                "roses" -> tempn[i] = "玫瑰"
-                "tulips" -> tempn[i] = "鬱金香"
-                "Calliandra" -> tempn[i] = "朱纓花"
-                "Lantana" -> tempn[i] = "馬纓丹"
-                "Hibiscus" -> tempn[i] = "扶桑"
-                "Osmanthus" -> tempn[i] = "桂花"
+            for (j in 0 until FlowerData.allFlower.size) {
+                tempn[i] = when (output.label.lowercase(Locale.getDefault())) {
+                    FlowerData.allFlower[j].nameEn.lowercase(Locale.getDefault()) -> FlowerData.allFlower[j].nameCh
+                    else -> output.label.toString()
+                }
+                if (tempn[i]!= output.label.toString()){
+                    break
+                }
             }
         }
-        /*val result1 = getString(R.string.Result, tempn[0], outputs[0].score)
-        val result2 = getString(R.string.Result, tempn[1], outputs[1].score)
-        val result3 = getString(R.string.Result, tempn[2], outputs[2].score)
-        val text = "$result1\n$result2\n$result3"*/
         val sss = (outputs[0].score*100).toInt()
         resultText.text = tempn[0]+"(${sss}%)"
         finalFlower = tempn[0].toString()

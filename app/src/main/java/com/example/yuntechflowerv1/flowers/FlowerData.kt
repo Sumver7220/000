@@ -115,7 +115,7 @@ object FlowerData {
         FlowerItem(
             9,
             "Small-leaved Barringtonia",
-            "穗花棋盤腳樹(水茄苳)",
+            "水茄苳",
             "Barringtonia racemosa (L.) Blume ex DC.",
             "無",
             "其性味：根：苦、涼。根：清熱。治熱病發熱。葉：袪濕止癢。治皮膚搔癢，水痘。果實：止咳平喘，止瀉。治咳嗽，哮喘，腹瀉。-種子：清熱利濕，退癀，止痛。治目赤腫痛，黃膽，腹痛，疝氣。",
@@ -138,8 +138,8 @@ object FlowerData {
         ),
         FlowerItem(
             11,
-            "Frangipani",
-            "雞蛋花(緬梔花)",
+            "Plumeria",
+            "雞蛋花",
             "Plumeria acuminata Ait.",
             "孕育希望，復活，新生。",
             "其花性味：甘、平、氣香。花：潤肺解毒，止咳。治腸炎，痢疾，消化不良，小兒疳積，傳染性肝炎，支氣管炎，溼熱下痢，裏急後重，預防中暑。",
@@ -210,7 +210,7 @@ object FlowerData {
         ),
         FlowerItem(
             17,
-            "Chinese Hibiscus",
+            "Hibiscus",
             "扶桑",
             "Hibiscus rosa-sinensis Linn.",
             "新鮮的戀情，微妙的美。我",
@@ -222,19 +222,19 @@ object FlowerData {
         ),
         FlowerItem(
             18,
-            "Powder Puff",
-            "紅粉撲花",
-            "Calliandra emarginata",
-            "親密，優雅。",
-            "000",
-            "常綠灌木，花絲細長，為鮮紅色絲絨狀，頭狀花序形成半球形，狀似可愛的小粉撲。小葉片會主動閉合，行睡眠運動，白天再展開，似含羞草般，但經外力碰觸並不會閉合。",
+            "Calliandra",
+            "朱纓花",
+            "Calliandra haematocephala Hassk.",
+            "奔放、豪邁、喜慶。",
+            "性味：樹皮：淡、辛。效用：樹皮：利尿，驅蟲。",
+            "落葉灌木，株高 2~4 公尺。二回偶數羽狀複葉，小葉歪長卵形；小葉 7~10 對，長橢圓狀披針形，兩邊不等，先端尖，長 1.2~3.5 公分，寬 0.3~1.6 公分。午後三、四點起，羽葉常自然閉合。花冠呈圓球形，絲絨狀花序之雄蕊，花期為夏至秋季。長條扁平莢果。長  6~12 公分。",
             "粉撲花屬",
             "豆科",
             R.mipmap.flower18_0
         ),
         FlowerItem(
             19,
-            "Sweet Osmanthus",
+            "Osmanthus",
             "桂花",
             "Osmanthus fragrans (Thunb.) Lour.",
             "溝通表達之花：人際往來平衡、無紛爭",
@@ -327,7 +327,7 @@ object FlowerData {
             "鄧伯花屬",
             "爵床科",
             R.mipmap.flower26_0
-
         ),
+
     )
 }
