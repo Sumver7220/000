@@ -25,10 +25,6 @@ class SearchListActivity : AppCompatActivity() {
         title = ""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_list)
-        TextViewCompat.setAutoSizeTextTypeWithDefaults(
-            textView,
-            TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
-        )
         val searchView = findViewById<SearchView>(R.id.searchView)
         searchView.isIconifiedByDefault = false
         recyclerView.layoutManager = WrapContentLinearLayoutManager(
@@ -36,7 +32,6 @@ class SearchListActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL,
             false
         )
-        //recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         val photosList = FlowerData.allFlower
         items.addAll(photosList)
