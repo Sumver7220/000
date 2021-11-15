@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">雲科花朵辨識專題V1</string>
     <string name="title">雲科花朵辨識專題<br />YunFlower</string>
-    <string name="Result">這可能是:%1$s 機率%2$f</string>
     <string name="btn_photo_text">開啟相簿</string>
     <string name="btn_Camera_text">實時辨識</string>
     <string name="btn_Illus_text">花朵圖鑑</string>

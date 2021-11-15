@@ -5,21 +5,18 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuntechflowerv1.FlowerDetail
 import com.example.yuntechflowerv1.R
 import com.example.yuntechflowerv1.flowers.FlowerItem
-import com.example.yuntechflowerv1.inflate
 import com.example.yuntechflowerv1.util.Utils
-import kotlinx.android.synthetic.main.flower_search_item.*
 import kotlinx.android.synthetic.main.flower_search_item.view.*
 
 class MyAdapter(
     private val context: Context,
-    private val flowerItems:  MutableList<FlowerItem>
+    private val flowerItems: MutableList<FlowerItem>
 ) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     class MyViewHolder(private val context: Context, v: View) : RecyclerView.ViewHolder(v),
@@ -54,7 +51,7 @@ class MyAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val example = inflater.inflate(R.layout.flower_search_item, parent, false)
-        return MyViewHolder(context,example)
+        return MyViewHolder(context, example)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

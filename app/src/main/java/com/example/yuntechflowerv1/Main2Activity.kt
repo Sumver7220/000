@@ -18,9 +18,10 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuntechflowerv1.ml.NewModel
 import com.example.yuntechflowerv1.adapter.RecognitionAdapter
 import com.example.yuntechflowerv1.flowers.FlowerData
+import com.example.yuntechflowerv1.ml.NewModel
+import com.example.yuntechflowerv1.ml.NewModelV2
 import com.example.yuntechflowerv1.util.YuvToRgbConv
 import com.example.yuntechflowerv1.viewModel.RecogViewModel
 import com.example.yuntechflowerv1.viewModel.Recognition
@@ -31,7 +32,7 @@ import java.util.*
 import java.util.concurrent.Executors
 
 private var MAX_RESULT_DISPLAY = 1 //顯示辨認結果數量
-private var DEBUG_MODE=0
+private var DEBUG_MODE = 0
 private const val TAG = "110專題歐俊毅好C"
 private const val REQUEST_CODE_PERMISSIONS = 999 //權限返回碼
 private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA) //相機權限
@@ -54,7 +55,7 @@ class Main2Activity : AppCompatActivity() {
     private val recogViewModel: RecogViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        title=""
+        title = ""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
@@ -76,16 +77,18 @@ class Main2Activity : AppCompatActivity() {
 
         DEBUG.setOnClickListener {
             DEBUG_MODE++
-            if (DEBUG_MODE>=3)
-                MAX_RESULT_DISPLAY=3
+            if (DEBUG_MODE >= 3)
+                MAX_RESULT_DISPLAY = 3
         }
 
     }
+
     private fun buildToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -95,6 +98,7 @@ class Main2Activity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     private fun allPermissionsGranted(): Boolean = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(
             baseContext, it
@@ -152,7 +156,7 @@ class Main2Activity : AppCompatActivity() {
 
     private class ImageAnalyzer(ctx: Context, private val listener: RecognitionListener) :
         ImageAnalysis.Analyzer {
-        private val flowerModel = NewModel.newInstance(ctx)
+        private val flowerModel = NewModelV2.newInstance(ctx)
 
         override fun analyze(imageProxy: ImageProxy) {
             var temp = ""
@@ -182,7 +186,7 @@ class Main2Activity : AppCompatActivity() {
                         FlowerData.allFlower[i].nameEn.lowercase(Locale.getDefault()) -> FlowerData.allFlower[i].nameCh
                         else -> output.label.toString()
                     }
-                    if (temp!= output.label.toString()){
+                    if (temp != output.label.toString()) {
                         break
                     }
                 }

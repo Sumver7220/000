@@ -1,14 +1,12 @@
 package com.example.yuntechflowerv1
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.TextViewCompat
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuntechflowerv1.adapter.MyAdapter
 import com.example.yuntechflowerv1.flowers.FlowerData
@@ -16,16 +14,15 @@ import com.example.yuntechflowerv1.flowers.FlowerItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flower_search_item.*
 import kotlinx.android.synthetic.main.search_list.*
-import kotlinx.android.synthetic.main.search_list.toolbar
 import java.util.*
 import kotlin.collections.ArrayList
 
-class SearchListActivity : AppCompatActivity()  {
+class SearchListActivity : AppCompatActivity() {
     var items: MutableList<FlowerItem> = ArrayList()
     var searchList: MutableList<FlowerItem> = ArrayList()
-    private var sectionItemData:MutableList<FlowerItem> = mutableListOf()
+    private var sectionItemData: MutableList<FlowerItem> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
-        title=""
+        title = ""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_list)
         TextViewCompat.setAutoSizeTextTypeWithDefaults(
@@ -46,7 +43,7 @@ class SearchListActivity : AppCompatActivity()  {
         searchList.addAll(photosList)
 
         resetSection()
-        recyclerView.adapter = MyAdapter(this,sectionItemData)
+        recyclerView.adapter = MyAdapter(this, sectionItemData)
 
         buildToolbar()
 
@@ -83,6 +80,7 @@ class SearchListActivity : AppCompatActivity()  {
 
         })
     }
+
     fun resetSection() {
         val sections: MutableList<FlowerItem> = mutableListOf()
 
@@ -92,11 +90,13 @@ class SearchListActivity : AppCompatActivity()  {
         sectionItemData.clear()
         sectionItemData.addAll(sections)
     }
+
     private fun buildToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

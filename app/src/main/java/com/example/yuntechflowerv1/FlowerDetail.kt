@@ -3,19 +3,16 @@ package com.example.yuntechflowerv1
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.example.yuntechflowerv1.flowers.FlowerData
 import com.example.yuntechflowerv1.flowers.FlowerItem
 import com.example.yuntechflowerv1.util.Utils
-import kotlinx.android.synthetic.main.activity_main3.*
 import kotlinx.android.synthetic.main.flowerdetail.*
-import kotlinx.android.synthetic.main.flowerdetail.toolbar
 
 class FlowerDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        title=""
+        title = ""
         super.onCreate(savedInstanceState)
         setContentView(R.layout.flowerdetail)
-        val flower= intent.getParcelableExtra<FlowerItem>("item")
+        val flower = intent.getParcelableExtra<FlowerItem>("item")
         buildToolbar()
         if (flower != null) {
             createText(flower)
@@ -24,7 +21,7 @@ class FlowerDetail : AppCompatActivity() {
 
     private fun createText(flower: FlowerItem) {
         textViewNameSci.text = flower.nameSci
-        textViewNameEn.text =flower.nameEn
+        textViewNameEn.text = flower.nameEn
         if (flower.language.isNotEmpty()) {
             textViewLang.text = flower.language
         } else {
@@ -33,14 +30,14 @@ class FlowerDetail : AppCompatActivity() {
         textViewGenusFamily.text =
             flower.genusCh + flower.familyCh
         textViewDesc.text = flower.description
-        textViewMed.text=flower.med
+        textViewMed.text = flower.med
         imageView.setImageDrawable(
             Utils.getDrawable(
                 this,
                 "flower${flower.index}_0"
             )
         )
-        flowerName.text=flower.nameCh
+        flowerName.text = flower.nameCh
     }
 
     private fun buildToolbar() {
@@ -48,6 +45,7 @@ class FlowerDetail : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {

@@ -37,4 +37,4 @@ data class FlowerItem(
 
     @SerializedName("Image")
     val image: Int
-) : Parcelable{}
+) : Parcelable

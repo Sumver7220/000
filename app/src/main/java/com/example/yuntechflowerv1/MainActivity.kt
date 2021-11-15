@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
         btn_Library.setOnClickListener {
             //Toast.makeText(this,"親~功能尚未開放，敬請期待",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this,SearchListActivity::class.java)
+            val intent = Intent(this, SearchListActivity::class.java)
             startActivity(intent)
         }
     }
