@@ -2,11 +2,15 @@ package com.example.yuntechflowerv1
 
 import android.content.Context
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
+import android.view.SubMenu
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.TextViewCompat
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuntechflowerv1.adapter.MyAdapter
 import com.example.yuntechflowerv1.flowers.FlowerData
@@ -20,6 +24,9 @@ import kotlin.collections.ArrayList
 class SearchListActivity : AppCompatActivity() {
     var items: MutableList<FlowerItem> = ArrayList()
     var searchList: MutableList<FlowerItem> = ArrayList()
+    private val photosList = FlowerData.allFlower
+    private var sortedList =
+        photosList.sortedWith(compareBy { it.nameEn })
     private var sectionItemData: MutableList<FlowerItem> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         title = ""
@@ -27,15 +34,10 @@ class SearchListActivity : AppCompatActivity() {
         setContentView(R.layout.search_list)
         val searchView = findViewById<SearchView>(R.id.searchView)
         searchView.isIconifiedByDefault = false
-        recyclerView.layoutManager = WrapContentLinearLayoutManager(
-            this,
-            LinearLayoutManager.VERTICAL,
-            false
-        )
+        recyclerView.layoutManager = GridLayoutManager(this,2)
 
-        val photosList = FlowerData.allFlower
-        items.addAll(photosList)
-        searchList.addAll(photosList)
+        items.addAll(sortedList)
+        searchList.addAll(sortedList)
 
         resetSection()
         recyclerView.adapter = MyAdapter(this, sectionItemData)
@@ -82,6 +84,7 @@ class SearchListActivity : AppCompatActivity() {
         for (value in searchList) {
             sections.add(value)
         }
+
         sectionItemData.clear()
         sectionItemData.addAll(sections)
     }
@@ -91,11 +94,33 @@ class SearchListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        toolbar.inflateMenu(R.menu.menu)
+        return true
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 finish()
+                true
+            }
+            R.id.sort_up->{
+                //Toast.makeText(this,"up!",Toast.LENGTH_SHORT).show()
+                sortedList = searchList.sortedWith(compareBy { it.nameEn })
+                searchList.clear()
+                searchList.addAll(sortedList)
+                resetSection()
+                recyclerView.adapter!!.notifyDataSetChanged()
+                true
+            }
+            R.id.sort_down->{
+                //Toast.makeText(this,"down!",Toast.LENGTH_SHORT).show()
+                sortedList = searchList.sortedWith(compareByDescending { it.nameEn })
+                searchList.clear()
+                searchList.addAll(sortedList)
+                resetSection()
+                recyclerView.adapter!!.notifyDataSetChanged()
                 true
             }
             else -> super.onOptionsItemSelected(item)

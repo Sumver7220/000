@@ -9,7 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/button_Green"
         android:minHeight="?attr/actionBarSize">
 
         <TextView
@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/toolBar_Camera"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="20sp" />
 

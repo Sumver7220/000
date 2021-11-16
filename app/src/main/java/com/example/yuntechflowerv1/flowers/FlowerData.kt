@@ -90,7 +90,7 @@ object FlowerData {
         ),
         FlowerItem(
             7,
-            "African Touch-me-not",
+            "African\t Touch-me-not",
             "非洲鳳仙花",
             "Impatiens petersiana",
             "溝通表達之花：人際往來平衡、無紛爭",
@@ -174,13 +174,13 @@ object FlowerData {
         ),
         FlowerItem(
             14,
-            "Florida Yellowtrumpet",
+            "Yellow Elder",
             "黃鐘花",
             "Tecoma stans (Linn.) Juss. exH.B.K",
             "無",
             "000",
             "常綠灌木，具多數分枝；枝條圓柱形，光滑無毛或僅幼嫩部份有毛茸。葉對生，掌狀三出複葉，小葉有鋸齒或羽狀深裂，細脈明顯，葉柄甚短或無。果實成熟時帶褐色，開裂。",
-            "洋凌霄屬",
+            "黃鐘花屬",
             "紫葳科",
             R.mipmap.flower14_0
         ),

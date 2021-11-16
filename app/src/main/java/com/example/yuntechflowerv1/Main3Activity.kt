@@ -116,7 +116,7 @@ class Main3Activity : AppCompatActivity() {
             }
         }
         val sss = (outputs[0].score * 100).toInt()
-        resultText.text = tempn[0] + "(${sss}%)"
+        resultText.text = "這可能是:"+tempn[0] + "(${sss}%)"
         finalFlower = tempn[0].toString()
         flowerIndex()
         showDetail(index)

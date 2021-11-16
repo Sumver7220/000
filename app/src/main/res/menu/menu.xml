@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_sort"
+        android:title="排序"
+        android:icon="@drawable/ic_baseline_sort_by_alpha_32"
+        app:showAsAction="ifRoom">
+        <menu>
+            <item
+                android:id="@+id/sort_up"
+                android:orderInCategory="100"
+                android:title="升序(A-Z)"/>
+            <item
+                android:id="@+id/sort_down"
+                android:orderInCategory="100"
+                android:title="降序(Z-A)"/>
+        </menu>
+    </item>
+</menu>

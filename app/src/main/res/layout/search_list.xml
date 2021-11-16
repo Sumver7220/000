@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchListActivity">
+    tools:context=".SearchListActivity"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/button_Green"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +24,9 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/toolBar_Library"
+            android:textColor="@color/white"
             android:textAlignment="center"
-            android:textSize="20sp"
-            android:paddingStart="80dp"
-            android:paddingEnd="80dp"/>
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
     <SearchView
