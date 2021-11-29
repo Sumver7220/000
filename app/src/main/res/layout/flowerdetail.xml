@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FlowerDetail">
+    android:background="#7EA382">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/button_Green"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,19 +22,26 @@
             android:layout_gravity="center"
             android:text="花朵"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
+        android:id="@+id/container0"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="@id/container0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/container0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_container"
@@ -43,156 +50,423 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:scaleType="centerCrop"
-                    app:layout_constraintDimensionRatio="16:16"
+                    app:layout_constraintBottom_toBottomOf="@id/cornerView"
+                    app:layout_constraintDimensionRatio="16:12"
+                    app:layout_constraintEnd_toEndOf="@id/cornerView"
+                    app:layout_constraintStart_toStartOf="@id/cornerView"
+                    app:layout_constraintTop_toTopOf="@id/cornerView" />
+
+                <View
+                    android:id="@+id/cornerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:background="@drawable/image_background"
+                    app:layout_constraintDimensionRatio="16:12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/layout_container" />
 
-                <TextView
-                    android:id="@+id/text_NameEn"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detail_layout0"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_enName"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView" />
+                    android:layout_margin="10dp"
+                    android:background="@drawable/text_background"
+                    android:padding="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/cornerView">
 
-                <TextView
-                    android:id="@+id/textViewNameEn"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/text_NameEn"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_enName"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout0" />
+
+                    <TextView
+                        android:id="@+id/textViewNameEn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_NameEn"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout0" />
+
+                    <TextView
+                        android:id="@+id/text_NameSci"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/text_SciName"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
+
+                    <TextView
+                        android:id="@+id/textViewNameSci"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingEnd="16dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_NameSci"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
+
+                    <TextView
+                        android:id="@+id/text_NameAno"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/text_AnoName"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
+
+                    <TextView
+                        android:id="@+id/textViewNameAno"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingEnd="16dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_NameAno"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
+
+                    <TextView
+                        android:id="@+id/text_GenusFamily"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/text_genusFamily"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameAno" />
+
+                    <TextView
+                        android:id="@+id/textViewGenusFamily"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:paddingEnd="16dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/text_GenusFamily"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameAno" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detail_layout1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/text_background"
+                    android:padding="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/text_NameEn"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-                <TextView
-                    android:id="@+id/text_NameSci"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_SciName"
-                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_layout0">
 
-                <TextView
-                    android:id="@+id/textViewNameSci"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/image0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_local_florist_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout1" />
+
+                    <TextView
+                        android:id="@+id/text_Lang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/text_Lang"
+                        android:textColor="@color/title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/image0"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout1" />
+
+                    <TextView
+                        android:id="@+id/textViewLang"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_Lang" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detail_layout2"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingEnd="16dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/text_background"
+                    android:padding="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/text_NameSci"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewNameEn" />
-
-                <TextView
-                    android:id="@+id/text_GenusFamily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_genusFamily"
-                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_layout1">
 
-                <TextView
-                    android:id="@+id/textViewGenusFamily"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/image1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_outline_info_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout2" />
+
+                    <TextView
+                        android:id="@+id/text_Desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/text_Desc"
+                        android:textColor="@color/title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/image1"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout2" />
+
+                    <TextView
+                        android:id="@+id/textViewDesc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:letterSpacing="0.05"
+                        android:lineSpacingExtra="1dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_Desc" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detail_layout3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:paddingEnd="16dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/text_background"
+                    android:padding="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_GenusFamily"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewNameSci" />
-
-                <TextView
-                    android:id="@+id/text_Lang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/text_Lang"
-                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewGenusFamily" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_layout2">
 
-                <TextView
-                    android:id="@+id/textViewLang"
-                    android:layout_width="0dp"
+                    <ImageView
+                        android:id="@+id/image2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_outline_medical_services_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout3" />
+
+                    <TextView
+                        android:id="@+id/text_Med"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/text_Med"
+                        android:textColor="@color/title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/image2"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout3" />
+
+                    <TextView
+                        android:id="@+id/textViewMed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@id/detail_layout3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_Med" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/detail_layout4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/text_background"
+                    android:padding="15dp"
+                    app:layout_constraintBottom_toBottomOf="@id/layout_container"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_Lang"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewGenusFamily" />
-
-                <TextView
-                    android:id="@+id/text_Desc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_Desc"
-                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/textViewLang" />
+                    app:layout_constraintTop_toBottomOf="@id/detail_layout3">
 
-                <TextView
-                    android:id="@+id/textViewDesc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_Desc"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewLang" />
+                    <ImageView
+                        android:id="@+id/image3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_round_extension_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout4" />
 
-                <TextView
-                    android:id="@+id/text_Med"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/text_Med"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textViewMed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
+                    <TextView
+                        android:id="@+id/text_Appearance"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="2dp"
+                        android:text="特徵"
+                        android:textColor="@color/title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/image3"
+                        app:layout_constraintTop_toTopOf="@id/detail_layout4" />
 
-                <TextView
-                    android:id="@+id/textViewMed"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="40dp"
-                    android:text="TextView"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/text_Med"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />
+                    <TextView
+                        android:id="@+id/text_Type"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="植物類型"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_Appearance" />
+
+                    <TextView
+                        android:id="@+id/textViewType"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_Type"
+                        app:layout_constraintTop_toBottomOf="@id/text_Appearance" />
+
+                    <TextView
+                        android:id="@+id/text_Period"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="生長週期"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_Type" />
+
+                    <TextView
+                        android:id="@+id/textViewPeriod"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_Period"
+                        app:layout_constraintTop_toBottomOf="@id/textViewType" />
+
+                    <TextView
+                        android:id="@+id/text_Season"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="花期"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_Period" />
+
+                    <TextView
+                        android:id="@+id/textViewSeason"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_Season"
+                        app:layout_constraintTop_toBottomOf="@id/textViewPeriod" />
+
+                    <TextView
+                        android:id="@+id/text_Diameter"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="花的大小"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_Season" />
+
+                    <TextView
+                        android:id="@+id/textViewDiameter"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_Diameter"
+                        app:layout_constraintTop_toBottomOf="@id/textViewSeason" />
+
+                    <TextView
+                        android:id="@+id/text_Color"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="花色"
+                        android:textColor="#6C6C6C"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_Diameter" />
+
+                    <TextView
+                        android:id="@+id/textViewColor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="TextView"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/text_Color"
+                        app:layout_constraintTop_toBottomOf="@id/textViewDiameter" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>

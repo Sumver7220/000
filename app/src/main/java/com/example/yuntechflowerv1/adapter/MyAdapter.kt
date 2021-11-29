@@ -5,16 +5,12 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.widget.TextViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuntechflowerv1.FlowerDetail
 import com.example.yuntechflowerv1.R
 import com.example.yuntechflowerv1.flowers.FlowerItem
 import com.example.yuntechflowerv1.util.Utils
-import kotlinx.android.synthetic.main.flower_search_item.view.*
 import kotlinx.android.synthetic.main.flower_search_item_grid.view.*
-import org.w3c.dom.Text
 
 class MyAdapter(
     private val context: Context,
@@ -25,18 +21,20 @@ class MyAdapter(
         View.OnClickListener {
         val image = itemView.itemImage
         val textCh = itemView.itemtextCh
-        val textEn=itemView.itemtextEn
+        val textEn = itemView.itemtextEn
         private var flowerIItem: FlowerItem? = null
+
 
         init {
             v.setOnClickListener(this)
         }
 
         fun bindPhoto(flowerItem: FlowerItem) {
+
             this.flowerIItem = flowerItem
             image.setImageDrawable(Utils.getDrawable(context, "flower${flowerItem.index}_0"))
             textCh.text = flowerItem.nameCh
-            textEn.text=flowerItem.nameEn
+            textEn.text = flowerItem.nameEn
         }
 
         override fun onClick(view: View) {

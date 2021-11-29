@@ -4,19 +4,14 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.SubMenu
 import android.view.inputmethod.InputMethodManager
 import android.widget.SearchView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.yuntechflowerv1.adapter.MyAdapter
 import com.example.yuntechflowerv1.flowers.FlowerData
 import com.example.yuntechflowerv1.flowers.FlowerItem
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.flower_search_item.*
 import kotlinx.android.synthetic.main.search_list.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -34,7 +29,7 @@ class SearchListActivity : AppCompatActivity() {
         setContentView(R.layout.search_list)
         val searchView = findViewById<SearchView>(R.id.searchView)
         searchView.isIconifiedByDefault = false
-        recyclerView.layoutManager = GridLayoutManager(this,2)
+        recyclerView.layoutManager = GridLayoutManager(this, 2)
 
         items.addAll(sortedList)
         searchList.addAll(sortedList)
@@ -59,7 +54,9 @@ class SearchListActivity : AppCompatActivity() {
                     val searchText = newText.lowercase(Locale.getDefault())
                     items.forEach {
                         if (it.nameCh.contains(searchText)
+                            || it.nameAno.contains(searchText)
                             || it.nameEn.lowercase(Locale.getDefault()).contains(searchText)
+                            || it.nameSci.lowercase(Locale.getDefault()).contains(searchText)
                         ) {
                             searchList.add(it)
                         }
@@ -94,8 +91,9 @@ class SearchListActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        toolbar.inflateMenu(R.menu.menu)
+        toolbar.inflateMenu(R.menu.menu_searchlist)
         return true
     }
 
@@ -105,7 +103,7 @@ class SearchListActivity : AppCompatActivity() {
                 finish()
                 true
             }
-            R.id.sort_up->{
+            R.id.sort_up -> {
                 //Toast.makeText(this,"up!",Toast.LENGTH_SHORT).show()
                 sortedList = searchList.sortedWith(compareBy { it.nameEn })
                 searchList.clear()
@@ -114,7 +112,7 @@ class SearchListActivity : AppCompatActivity() {
                 recyclerView.adapter!!.notifyDataSetChanged()
                 true
             }
-            R.id.sort_down->{
+            R.id.sort_down -> {
                 //Toast.makeText(this,"down!",Toast.LENGTH_SHORT).show()
                 sortedList = searchList.sortedWith(compareByDescending { it.nameEn })
                 searchList.clear()

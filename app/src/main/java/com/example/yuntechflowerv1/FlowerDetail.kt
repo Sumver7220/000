@@ -2,6 +2,7 @@ package com.example.yuntechflowerv1
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.yuntechflowerv1.flowers.FlowerItem
 import com.example.yuntechflowerv1.util.Utils
@@ -20,17 +21,6 @@ class FlowerDetail : AppCompatActivity() {
     }
 
     private fun createText(flower: FlowerItem) {
-        textViewNameSci.text = flower.nameSci
-        textViewNameEn.text = flower.nameEn
-        if (flower.language.isNotEmpty()) {
-            textViewLang.text = flower.language
-        } else {
-            textViewLang.text = "無"
-        }
-        textViewGenusFamily.text =
-            flower.genusCh + flower.familyCh
-        textViewDesc.text = flower.description
-        textViewMed.text = flower.med
         imageView.setImageDrawable(
             Utils.getDrawable(
                 this,
@@ -38,6 +28,32 @@ class FlowerDetail : AppCompatActivity() {
             )
         )
         flowerName.text = flower.nameCh
+        textViewNameSci.text = flower.nameSci
+        textViewNameEn.text = flower.nameEn
+        if (flower.nameAno.isNotEmpty()) {
+            textViewNameAno.text = flower.nameAno
+        } else {
+            text_NameAno.visibility = View.GONE
+            textViewNameAno.visibility = View.GONE
+        }
+        if (flower.language.isNotEmpty()) {
+            textViewLang.text = flower.language
+        } else {
+            detail_layout1.visibility = View.GONE
+        }
+        if (flower.med.isNotEmpty()) {
+            textViewMed.text = flower.med
+        } else {
+            detail_layout3.visibility = View.GONE
+        }
+        textViewGenusFamily.text =
+            flower.genusCh + flower.familyCh
+        textViewDesc.text = flower.description
+        textViewType.text = flower.type
+        textViewPeriod.text = flower.period
+        textViewSeason.text = flower.season
+        textViewDiameter.text = flower.diameter
+        textViewColor.text = flower.color
     }
 
     private fun buildToolbar() {

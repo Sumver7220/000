@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
+import com.example.yuntechflowerv1.flowers.FlowerData
+import com.example.yuntechflowerv1.util.Utils
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     //存拒絕的權限
     private var permissionTemp: ArrayList<String> = ArrayList()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -81,6 +82,22 @@ class MainActivity : AppCompatActivity() {
         btn_Library.setOnClickListener {
             //Toast.makeText(this,"親~功能尚未開放，敬請期待",Toast.LENGTH_SHORT).show()
             val intent = Intent(this, SearchListActivity::class.java)
+            startActivity(intent)
+        }
+        var num = (Math.random() * (FlowerData.allFlower.size - 1)).toInt()
+        gallery.setImageDrawable(
+            Utils.getDrawable(
+                this,
+                "flower${num}_0"
+            )
+        )
+        gallery.setOnClickListener {
+            val intent = Intent(this, FlowerDetail::class.java)
+            intent.putExtra("item", FlowerData.allFlower[num])
+            startActivity(intent)
+        }
+        btn_Help.setOnClickListener {
+            val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)
         }
     }

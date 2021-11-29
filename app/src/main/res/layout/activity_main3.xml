@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#edf0ee"
+    android:background="#7EA382"
     tools:context=".Main3Activity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -21,18 +22,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/toolBar_Result"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="20sp"
             android:paddingStart="80dp"
-            android:paddingEnd="80dp"/>
+            android:paddingEnd="80dp"
+            android:text="@string/toolBar_Result"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/scroll"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,16 +42,28 @@
 
         <ImageView
             android:id="@+id/photoView"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="@id/cornerView"
+            app:layout_constraintDimensionRatio="16:12"
+            app:layout_constraintEnd_toEndOf="@id/cornerView"
+            app:layout_constraintStart_toStartOf="@id/cornerView"
+            app:layout_constraintTop_toTopOf="@id/cornerView" />
+
+        <View
+            android:id="@+id/cornerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/image_background"
+            app:layout_constraintDimensionRatio="16:12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/container1" />
-
 
         <TextView
             android:id="@+id/resultText"
@@ -60,9 +73,9 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photoView" />
 
@@ -84,21 +97,21 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white"
+        android:layout_margin="10dp"
+        android:background="@drawable/text_background"
         app:layout_constraintBottom_toTopOf="@+id/container3"
         app:layout_constraintTop_toBottomOf="@+id/container1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/text_ename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
                 android:text="@string/text_enName"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -109,7 +122,6 @@
                 android:id="@+id/enNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="1111"
                 android:textColor="@color/black"
                 android:textSize="20sp"
@@ -120,31 +132,29 @@
                 android:id="@+id/text_lang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/text_Lang"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@id/text_ename"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_ename" />
+
             <TextView
                 android:id="@+id/lanGueText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:text="1111"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/text_lang"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_lang"
                 app:layout_constraintTop_toBottomOf="@+id/enNameText" />
 
             <TextView
                 android:id="@+id/text_describe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/text_Desc"
                 android:textColor="@color/black"
@@ -161,25 +171,25 @@
                 android:text="1111"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintStart_toEndOf="@+id/text_describe"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_describe"
                 app:layout_constraintTop_toBottomOf="@+id/lanGueText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/scroll"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="#7EA382"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scroll">
 
         <Button
             android:id="@+id/btn_Album"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_homepage"
@@ -197,7 +207,7 @@
         <Button
             android:id="@+id/btn_More"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/button_homepage"
@@ -213,7 +223,6 @@
             app:layout_constraintStart_toEndOf="@id/btn_Album" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

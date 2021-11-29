@@ -1,100 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7EA382"
     android:orientation="vertical"
-    android:background="#D9F2DC"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.7"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="10dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/yuntech"/>
-
-        <TextView
-            android:id="@+id/Text_title"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="0.3"
-            android:autoSizeTextType="uniform"
-            android:gravity="center"
-            android:text="@string/title"
-            android:textColor="#335145"
-            android:textStyle="bold"
-            android:typeface="sans"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.5"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content"
+        android:layout_margin="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/btn_Camera"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_homepage"
-            android:drawableLeft="@drawable/camera_white_64px"
-            android:drawablePadding="6dp"
-            android:paddingLeft="20dp"
-            android:text="@string/btn_Camera_text"
+            android:drawableTop="@drawable/camera_white_64px"
+            android:paddingTop="20dp"
+            android:text="實時辨識"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/container"
+            app:layout_constraintEnd_toStartOf="@id/btn_Photo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/container" />
 
         <Button
             android:id="@+id/btn_Photo"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/button_homepage"
-            android:drawableLeft="@drawable/picture_white_64px"
-            android:drawablePadding="6dp"
-            android:paddingLeft="20dp"
-            android:text="@string/btn_photo_text"
+            android:drawableTop="@drawable/picture_white_64px"
+            android:paddingTop="20dp"
+            android:text="開啟相簿"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toEndOf="@id/btn_Camera"
+            app:layout_constraintTop_toTopOf="@id/container" />
 
-        <Button
-            android:id="@+id/btn_Library"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="60dp"
-            android:background="@drawable/button_homepage"
-            android:drawableLeft="@drawable/illustration_white_64px"
-            android:drawablePadding="6dp"
-            android:paddingLeft="20dp"
-            android:text="@string/btn_Illus_text"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageButton
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/cornerView"
+        app:layout_constraintDimensionRatio="16:12"
+        app:layout_constraintEnd_toEndOf="@id/cornerView"
+        app:layout_constraintStart_toStartOf="@id/cornerView"
+        app:layout_constraintTop_toTopOf="@id/cornerView" />
 
-    </LinearLayout>
+    <View
+        android:id="@+id/cornerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/image_background"
+        app:layout_constraintDimensionRatio="16:12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/Text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:text="今日花朵:"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container" />
+
+    <Button
+        android:id="@+id/btn_Library"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_homepage"
+        android:drawableLeft="@drawable/illustration_white_56px"
+        android:drawablePadding="6dp"
+        android:paddingLeft="25dp"
+        android:text="花朵圖鑑"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cornerView" />
+
+    <Button
+        android:id="@+id/btn_Help"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/button_homepage"
+        android:drawableLeft="@drawable/customer_question"
+        android:drawablePadding="6dp"
+        android:paddingLeft="25dp"
+        android:text="使用指南"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_Library" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

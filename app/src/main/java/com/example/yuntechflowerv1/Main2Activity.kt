@@ -8,7 +8,9 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
+import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,13 +22,13 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuntechflowerv1.adapter.RecognitionAdapter
 import com.example.yuntechflowerv1.flowers.FlowerData
-import com.example.yuntechflowerv1.ml.NewModel
-import com.example.yuntechflowerv1.ml.NewModelV2
+import com.example.yuntechflowerv1.ml.NewModelV3
 import com.example.yuntechflowerv1.util.YuvToRgbConv
 import com.example.yuntechflowerv1.viewModel.RecogViewModel
 import com.example.yuntechflowerv1.viewModel.Recognition
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.activity_main3.toolbar
+import kotlinx.android.synthetic.main.recognition_items.*
 import org.tensorflow.lite.support.image.TensorImage
 import java.util.*
 import java.util.concurrent.Executors
@@ -36,7 +38,6 @@ private var DEBUG_MODE = 0
 private const val TAG = "110專題歐俊毅好C"
 private const val REQUEST_CODE_PERMISSIONS = 999 //權限返回碼
 private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA) //相機權限
-
 typealias RecognitionListener = (recognition: List<Recognition>) -> Unit
 
 class Main2Activity : AppCompatActivity() {
@@ -77,8 +78,16 @@ class Main2Activity : AppCompatActivity() {
 
         DEBUG.setOnClickListener {
             DEBUG_MODE++
-            if (DEBUG_MODE >= 3)
+            if (DEBUG_MODE % 2 == 1) {
+                recognitionProb.visibility = View.VISIBLE
                 MAX_RESULT_DISPLAY = 3
+            } else if (DEBUG_MODE % 2 == 0) {
+                recognitionProb.visibility = View.GONE
+                MAX_RESULT_DISPLAY = 1
+            }
+        }
+        camera_Help.setOnClickListener {
+            camera_Help.visibility = View.INVISIBLE
         }
 
     }
@@ -89,10 +98,19 @@ class Main2Activity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        toolbar.inflateMenu(R.menu.menu_camera)
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 finish()
+                true
+            }
+            R.id.action_help -> {
+                camera_Help.visibility = View.VISIBLE
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -123,7 +141,6 @@ class Main2Activity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
-
         cameraProviderFuture.addListener({
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
@@ -156,12 +173,10 @@ class Main2Activity : AppCompatActivity() {
 
     private class ImageAnalyzer(ctx: Context, private val listener: RecognitionListener) :
         ImageAnalysis.Analyzer {
-        private val flowerModel = NewModelV2.newInstance(ctx)
-
+        private val flowerModel = NewModelV3.newInstance(ctx)
         override fun analyze(imageProxy: ImageProxy) {
             var temp = ""
             val items = mutableListOf<Recognition>()
-
             val tfImage = TensorImage.fromBitmap(toBitmap(imageProxy))
             val outputs = flowerModel.process(tfImage)
                 .probabilityAsCategoryList.apply {
@@ -169,21 +184,12 @@ class Main2Activity : AppCompatActivity() {
                 }.take(MAX_RESULT_DISPLAY)
 
             for (output in outputs) {
-                /*temp = when (output.label) {
-                    "daisy" -> "雛菊"
-                    "dandelion" -> "蒲公英"
-                    "sunflowers" -> "向日葵"
-                    "roses" -> "玫瑰"
-                    "tulips" -> "鬱金香"
-                    "Lantana"->"馬櫻丹"
-                    "Hibiscus"->"扶桑"
-                    "Calliandra"->"朱櫻花"
-                    "Osmanthus"->"桂花"
-                    else-> output.label.toString()
-                }*/
                 for (i in 0 until FlowerData.allFlower.size) {
                     temp = when (output.label.lowercase(Locale.getDefault())) {
-                        FlowerData.allFlower[i].nameEn.lowercase(Locale.getDefault()) -> FlowerData.allFlower[i].nameCh
+                        FlowerData.allFlower[i].nameEn.lowercase(Locale.getDefault()).replace(
+                            "\\s".toRegex(),
+                            ""
+                        ) -> "這可能是:" + FlowerData.allFlower[i].nameCh
                         else -> output.label.toString()
                     }
                     if (temp != output.label.toString()) {

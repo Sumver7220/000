@@ -6,13 +6,14 @@
     <string name="btn_Illus_text">花朵圖鑑</string>
     <string name="toolBar_Camera">實時辨識</string>
     <string name="toolBar_Result">辨識結果</string>
-    <string name="text_result">這可能是：</string>
     <string name="text_enName">英文名：</string>
     <string name="text_Lang">花語：</string>
-    <string name="text_Desc">外觀：</string>
+    <string name="text_Desc">簡介：</string>
     <string name="btn_Detail">花朵詳細</string>
     <string name="text_SciName">學名：</string>
     <string name="text_genusFamily">分類：</string>
-    <string name="text_Med">入藥：</string>
+    <string name="text_Med">藥/毒性：</string>
     <string name="toolBar_Library">花朵圖鑑</string>
+    <string name="help_Text">請將花朵放置於螢幕正中央，\n在保持花朵清晰的同時，\n花朵越大越好\n\n目前可辨識花朵:\n玫瑰、蒲公英、鬱金香、雛菊、向日葵、朱纓花、九重葛、扶桑、馬纓丹、雞蛋花、桂花、大王仙丹\n\n\n\n\n輕觸後關閉</string>
+    <string name="text_AnoName">別名：</string>
 </resources>
