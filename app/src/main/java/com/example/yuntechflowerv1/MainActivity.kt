@@ -11,8 +11,14 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.widget.TextViewCompat
 import com.example.yuntechflowerv1.flowers.FlowerData
+import com.example.yuntechflowerv1.ml.NewModelV3
 import com.example.yuntechflowerv1.util.Utils
+import com.example.yuntechflowerv1.viewModel.Recognition
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.flowerdetail.*
+import org.tensorflow.lite.support.image.TensorImage
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 

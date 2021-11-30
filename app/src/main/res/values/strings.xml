@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">雲科花朵辨識專題V1</string>
-    <string name="title">雲科花朵辨識專題<br />YunFlower</string>
+    <string name="app_name">雲科校園花朵辨識</string>
+    <string name="title">雲科校園花朵辨識<br />YunFlower</string>
     <string name="btn_photo_text">開啟相簿</string>
     <string name="btn_Camera_text">實時辨識</string>
     <string name="btn_Illus_text">花朵圖鑑</string>
